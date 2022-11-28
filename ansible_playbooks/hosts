@@ -1,0 +1,7 @@
+[nginx]
+lb.host ansible_ssh_host=10.3.0.10 ansible_ssh_user=root
+[apache]
+app1.host ansible_ssh_host=10.3.0.11 ansible_ssh_user=root host_name='1'
+app2.host ansible_ssh_host=10.3.0.12 ansible_ssh_user=root host_name='2'
+[db]
+db.host ansible_ssh_host=10.3.0.15 ansible_ssh_user=root

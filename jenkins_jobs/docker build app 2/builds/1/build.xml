@@ -1,0 +1,66 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UpstreamCause>
+            <upstreamProject>docker build images</upstreamProject>
+            <upstreamUrl>job/docker%20build%20images/</upstreamUrl>
+            <upstreamBuild>1</upstreamBuild>
+            <upstreamCauses>
+              <com.dabsquared.gitlabjenkins.cause.GitLabWebHookCause plugin="gitlab-plugin@1.5.36">
+                <data>
+                  <actionType>PUSH</actionType>
+                  <sourceProjectId>3</sourceProjectId>
+                  <targetProjectId>3</targetProjectId>
+                  <branch>main</branch>
+                  <sourceBranch>main</sourceBranch>
+                  <userName>user1</userName>
+                  <userUsername>user1</userUsername>
+                  <userEmail></userEmail>
+                  <sourceRepoHomepage>http://gitlab.example.com/user1/dockerfiles</sourceRepoHomepage>
+                  <sourceRepoName>dockerfiles</sourceRepoName>
+                  <sourceNamespace>user1</sourceNamespace>
+                  <sourceRepoUrl>git@gitlab.example.com:user1/dockerfiles.git</sourceRepoUrl>
+                  <sourceRepoSshUrl>git@gitlab.example.com:user1/dockerfiles.git</sourceRepoSshUrl>
+                  <sourceRepoHttpUrl>http://gitlab.example.com/user1/dockerfiles.git</sourceRepoHttpUrl>
+                  <mergeRequestTitle></mergeRequestTitle>
+                  <mergeRequestDescription></mergeRequestDescription>
+                  <mergeRequestState></mergeRequestState>
+                  <mergedByUser></mergedByUser>
+                  <mergeRequestAssignee></mergeRequestAssignee>
+                  <targetBranch>main</targetBranch>
+                  <targetRepoName></targetRepoName>
+                  <targetNamespace></targetNamespace>
+                  <targetRepoSshUrl></targetRepoSshUrl>
+                  <targetRepoHttpUrl></targetRepoHttpUrl>
+                  <triggeredByUser>user1</triggeredByUser>
+                  <before>450fa8dbd107db3456374e38dda4ab17b61b5611</before>
+                  <after>48578b36e3780eda20b0eed462ec6318be62bfac</after>
+                  <lastCommit>48578b36e3780eda20b0eed462ec6318be62bfac</lastCommit>
+                  <targetProjectUrl>http://gitlab.example.com/user1/dockerfiles</targetProjectUrl>
+                </data>
+              </com.dabsquared.gitlabjenkins.cause.GitLabWebHookCause>
+            </upstreamCauses>
+          </hudson.model.Cause_-UpstreamCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+  </actions>
+  <queueId>35</queueId>
+  <timestamp>1669583340724</timestamp>
+  <startTime>1669583340732</startTime>
+  <result>FAILURE</result>
+  <duration>32848</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/var/lib/jenkins/workspace/docker build app 2</workspace>
+  <hudsonVersion>2.361.3</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="java.util.Collections$UnmodifiableSet">
+    <c class="sorted-set"/>
+  </culprits>
+</build>

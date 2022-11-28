@@ -1,0 +1,48 @@
+Started by upstream project "[8mha:////4IhqmNEucWxdZiKpNSHSB/s8QwYSZDHWajgy57yU307WAAAAqB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzhEgZZ/az8JP2U/OTs1CJVI4Ok0sycFCCdmZuYnlqsDwBWtvuH0gAAAA==[0mdocker build images" build number [8mha:////4CR9LCzpaezJexP04enjqXYS09aNWs4sakJ7tFhFnzj/AAAAqB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBjn9rPwk/ZT85OzUIlUjg6TSzJwUIJ2Zm5ieWqxvCAB8Ysl+0wAAAA==[0m1
+originally caused by:
+ Started by GitLab push by user1
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/docker build app 1
+[docker build app 1] $ /bin/sh -xe /tmp/jenkins18365824082478577874.sh
++ ssh root@10.2.0.11 'yum install -y yum-utils'
+Последняя проверка окончания срока действия метаданных: 0:09:00 назад, Пн 28 ноя 2022 00:00:02.
+Пакет yum-utils-4.3.0-1.el9.noarch уже установлен.
+Зависимости разрешены.
+Отсутствуют действия для выполнения.
+Выполнено!
++ ssh root@10.2.0.11 'yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo'
+Добавление репозитория из: https://download.docker.com/linux/centos/docker-ce.repo
++ ssh root@10.2.0.11 'yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin'
+Docker CE Stable - x86_64                        13 kB/s | 3.5 kB     00:00    
+Пакет docker-ce-3:20.10.21-3.el9.x86_64 уже установлен.
+Пакет docker-ce-cli-1:20.10.21-3.el9.x86_64 уже установлен.
+Пакет containerd.io-1.6.10-3.1.el9.x86_64 уже установлен.
+Пакет docker-compose-plugin-2.12.2-3.el9.x86_64 уже установлен.
+Зависимости разрешены.
+Отсутствуют действия для выполнения.
+Выполнено!
+[docker build app 1] $ /bin/sh -xe /tmp/jenkins12143406220327063389.sh
++ ssh root@10.2.0.11 'rm -rf /etc/docker/daemon.json'
++ ssh root@10.2.0.11 'rm -rf /etc/default/docker || true'
++ ssh root@10.2.0.11 'mkdir -p /etc/docker/'
++ ssh root@10.2.0.11 'echo '\''{"insecure-registries": ["10.2.0.20:5000"]}'\'' > /etc/docker/daemon.json'
++ ssh root@10.2.0.11 'echo '\''DOCKER_OPTS="--insecure-registry 10.2.0.20:5000"'\'' > /etc/default/docker'
++ ssh root@10.2.0.11 'systemctl start docker.service'
++ ssh root@10.2.0.11 'systemctl stop docker.service'
+Warning: Stopping docker.service, but it can still be activated by:
+  docker.socket
++ ssh root@10.2.0.11 'systemctl start docker.service'
+[docker build app 1] $ /bin/sh -xe /tmp/jenkins18399418858377991126.sh
++ ssh root@10.2.0.11 'docker pull 10.2.0.20:5000/httpd_app1'
+Using default tag: latest
+latest: Pulling from httpd_app1
+Digest: sha256:e5f7b5bb7d804ca77146cca4731c7b095b10dbd6583540e67b8272cdfaddaf43
+Status: Image is up to date for 10.2.0.20:5000/httpd_app1:latest
+10.2.0.20:5000/httpd_app1:latest
++ ssh root@10.2.0.11 docker rm -f httpd_app1
+Error: No such container: httpd_app1
++ ssh root@10.2.0.11 'docker run -d --name httpd_local -p 8081:80 10.2.0.20:5000/httpd_app1'
+docker: Error response from daemon: Conflict. The container name "/httpd_local" is already in use by container "59dbfed10d3b955f27e68e82bbbc496d19924b6b277a567900668d260b949339". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+Build step 'Выполнить команду shell' marked build as failure
+Finished: FAILURE

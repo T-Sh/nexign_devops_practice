@@ -1,0 +1,103 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <com.dabsquared.gitlabjenkins.cause.GitLabWebHookCause plugin="gitlab-plugin@1.5.36">
+            <data>
+              <actionType>PUSH</actionType>
+              <sourceProjectId>3</sourceProjectId>
+              <targetProjectId>3</targetProjectId>
+              <branch>main</branch>
+              <sourceBranch>main</sourceBranch>
+              <userName>user1</userName>
+              <userUsername>user1</userUsername>
+              <userEmail></userEmail>
+              <sourceRepoHomepage>http://gitlab.example.com/user1/dockerfiles</sourceRepoHomepage>
+              <sourceRepoName>dockerfiles</sourceRepoName>
+              <sourceNamespace>user1</sourceNamespace>
+              <sourceRepoUrl>git@gitlab.example.com:user1/dockerfiles.git</sourceRepoUrl>
+              <sourceRepoSshUrl>git@gitlab.example.com:user1/dockerfiles.git</sourceRepoSshUrl>
+              <sourceRepoHttpUrl>http://gitlab.example.com/user1/dockerfiles.git</sourceRepoHttpUrl>
+              <mergeRequestTitle></mergeRequestTitle>
+              <mergeRequestDescription></mergeRequestDescription>
+              <mergeRequestState></mergeRequestState>
+              <mergedByUser></mergedByUser>
+              <mergeRequestAssignee></mergeRequestAssignee>
+              <targetBranch>main</targetBranch>
+              <targetRepoName></targetRepoName>
+              <targetNamespace></targetNamespace>
+              <targetRepoSshUrl></targetRepoSshUrl>
+              <targetRepoHttpUrl></targetRepoHttpUrl>
+              <triggeredByUser>user1</triggeredByUser>
+              <before>450fa8dbd107db3456374e38dda4ab17b61b5611</before>
+              <after>48578b36e3780eda20b0eed462ec6318be62bfac</after>
+              <lastCommit>48578b36e3780eda20b0eed462ec6318be62bfac</lastCommit>
+              <targetProjectUrl>http://gitlab.example.com/user1/dockerfiles</targetProjectUrl>
+            </data>
+          </com.dabsquared.gitlabjenkins.cause.GitLabWebHookCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <hudson.triggers.SCMTrigger_-BuildAction/>
+    <hudson.plugins.git.RevisionParameterAction plugin="git@4.13.0">
+      <commit>remotes/origin/main</commit>
+      <combineCommits>false</combineCommits>
+      <repoURL plugin="git-client@3.13.0">
+        <path>user1/dockerfiles.git</path>
+        <rawPath>user1/dockerfiles.git</rawPath>
+        <user>git</user>
+        <port>-1</port>
+        <host>gitlab.example.com</host>
+      </repoURL>
+    </hudson.plugins.git.RevisionParameterAction>
+    <com.cloudbees.plugins.credentials.builds.CredentialsParameterBinder plugin="credentials@1189.vf61b_a_5e2f62e">
+      <boundCredentials class="concurrent-hash-map"/>
+    </com.cloudbees.plugins.credentials.builds.CredentialsParameterBinder>
+    <hudson.plugins.git.util.BuildData plugin="git@4.13.0">
+      <buildsByBranchName>
+        <entry>
+          <string>refs/remotes/origin/main</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.13.0">
+              <sha1>48578b36e3780eda20b0eed462ec6318be62bfac</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>refs/remotes/origin/main</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision reference="../marked"/>
+            <hudsonBuildNumber>1</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+      </buildsByBranchName>
+      <lastBuild reference="../buildsByBranchName/entry/hudson.plugins.git.util.Build"/>
+      <remoteUrls>
+        <string>http://10.2.0.20/user1/dockerfiles</string>
+      </remoteUrls>
+    </hudson.plugins.git.util.BuildData>
+    <hudson.scm.SCMRevisionState_-None/>
+  </actions>
+  <queueId>33</queueId>
+  <timestamp>1669583325706</timestamp>
+  <startTime>1669583325717</startTime>
+  <result>SUCCESS</result>
+  <description>Started by GitLab push by user1</description>
+  <duration>4155</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/var/lib/jenkins/workspace/docker build images</workspace>
+  <hudsonVersion>2.361.3</hudsonVersion>
+  <scm class="hudson.plugins.git.GitChangeLogParser" plugin="git@4.13.0">
+    <authorOrCommitter>false</authorOrCommitter>
+    <showEntireCommitSummaryInChanges>true</showEntireCommitSummaryInChanges>
+  </scm>
+  <culprits class="java.util.Collections$UnmodifiableSet">
+    <c class="sorted-set"/>
+  </culprits>
+</build>

@@ -1,0 +1,34 @@
+- hosts: nginx 
+  tasks:
+    - name: Install nginx
+      yum: pkg=nginx state=present
+
+    - name: Configure nginx
+      template:
+        src=nginx.conf
+        dest=/etc/nginx/nginx.conf
+
+    - name: Start nginx
+      service:
+        name=nginx
+        state=restarted
+      
+    - name: Configure firewall
+      firewalld:
+        port: 8080/tcp
+        permanent: yes
+        state: enabled
+
+    - name: Reload firewall
+      systemd:
+        name: firewalld
+        state: reloaded
+
+    - selinux:
+        state: disabled
+
+    - name: Enable nginx
+      systemd:
+        name: nginx.service
+        enabled: true
+        masked: no

@@ -1,0 +1,135 @@
+Started by user [8mha:////4EQUw6wqUert2HzZ3FfvW0uGdo65uYxQxHo/zq0HfjLiAAAAlB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyOEgZu/dLi1CIwYQgAoFvN1cAAAAA=[0muser 1 1
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/docker build images
+The recommended git tool is: NONE
+using credential gitlab_id
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/docker build images/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url http://10.2.0.20/user1/dockerfiles # timeout=10
+Fetching upstream changes from http://10.2.0.20/user1/dockerfiles
+ > git --version # timeout=10
+ > git --version # 'git version 2.31.1'
+using GIT_ASKPASS to set credentials gitlab access
+ > git fetch --tags --force --progress -- http://10.2.0.20/user1/dockerfiles +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 48578b36e3780eda20b0eed462ec6318be62bfac (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 48578b36e3780eda20b0eed462ec6318be62bfac # timeout=10
+Commit message: "Update nginx.conf"
+ > git rev-list --no-walk 48578b36e3780eda20b0eed462ec6318be62bfac # timeout=10
+[docker build images] $ /bin/sh -xe /tmp/jenkins7207964718683788746.sh
++ docker build -t 10.2.0.20:5000/httpd_app1 -f Dockerfile.app --build-arg APP_NAME=app1 .
+Sending build context to Docker daemon  138.8kB
+Step 1/8 : FROM centos:7
+ ---> eeb6ee3f44bd
+Step 2/8 : RUN yum install -y httpd
+ ---> Using cache
+ ---> 4bacc8b28e4e
+Step 3/8 : COPY index.html /var/www/html/index.html
+ ---> Using cache
+ ---> 19b9704354a1
+Step 4/8 : COPY httpd.conf /etc/httpd/conf/httpd.conf
+ ---> Using cache
+ ---> b9241b773ba0
+Step 5/8 : ARG APP_NAME='app1'
+ ---> Using cache
+ ---> b7021485b805
+Step 6/8 : RUN sed -i -r "s/host_name/${APP_NAME}/g" /var/www/html/index.html
+ ---> Using cache
+ ---> 4c5899f44afb
+Step 7/8 : EXPOSE 80
+ ---> Using cache
+ ---> 563c60386843
+Step 8/8 : CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
+ ---> Using cache
+ ---> 6ef812cdbfd3
+Successfully built 6ef812cdbfd3
+Successfully tagged 10.2.0.20:5000/httpd_app1:latest
++ docker build -t 10.2.0.20:5000/httpd_app2 -f Dockerfile.app --build-arg APP_NAME=app2 .
+Sending build context to Docker daemon  138.8kB
+Step 1/8 : FROM centos:7
+ ---> eeb6ee3f44bd
+Step 2/8 : RUN yum install -y httpd
+ ---> Using cache
+ ---> 4bacc8b28e4e
+Step 3/8 : COPY index.html /var/www/html/index.html
+ ---> Using cache
+ ---> 19b9704354a1
+Step 4/8 : COPY httpd.conf /etc/httpd/conf/httpd.conf
+ ---> Using cache
+ ---> b9241b773ba0
+Step 5/8 : ARG APP_NAME='app1'
+ ---> Using cache
+ ---> b7021485b805
+Step 6/8 : RUN sed -i -r "s/host_name/${APP_NAME}/g" /var/www/html/index.html
+ ---> Using cache
+ ---> 97396a8fb725
+Step 7/8 : EXPOSE 80
+ ---> Using cache
+ ---> 4cf1e2b84d2f
+Step 8/8 : CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
+ ---> Using cache
+ ---> 61e8190db047
+Successfully built 61e8190db047
+Successfully tagged 10.2.0.20:5000/httpd_app2:latest
++ docker build -t 10.2.0.20:5000/nginx -f Dockerfile.lb .
+Sending build context to Docker daemon  138.8kB
+Step 1/5 : FROM centos:7
+ ---> eeb6ee3f44bd
+Step 2/5 : RUN yum install -y epel-release && yum install -y nginx
+ ---> Using cache
+ ---> 770c835a2a54
+Step 3/5 : COPY nginx.conf /etc/nginx/nginx.conf
+ ---> Using cache
+ ---> 1e25ae4fc00b
+Step 4/5 : EXPOSE 8080
+ ---> Using cache
+ ---> 5e49a1953a14
+Step 5/5 : CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+ ---> Using cache
+ ---> a56d4226c643
+Successfully built a56d4226c643
+Successfully tagged 10.2.0.20:5000/nginx:latest
+[docker build images] $ /bin/sh -xe /tmp/jenkins5204128979433264907.sh
++ docker push 10.2.0.20:5000/httpd_app1
+Using default tag: latest
+The push refers to repository [10.2.0.20:5000/httpd_app1]
+e43f7afd2f05: Preparing
+2b46ea7c8fd5: Preparing
+2e544c2daebf: Preparing
+1230e1d05e98: Preparing
+174f56854903: Preparing
+2b46ea7c8fd5: Layer already exists
+2e544c2daebf: Layer already exists
+174f56854903: Layer already exists
+e43f7afd2f05: Layer already exists
+1230e1d05e98: Layer already exists
+latest: digest: sha256:e5f7b5bb7d804ca77146cca4731c7b095b10dbd6583540e67b8272cdfaddaf43 size: 1363
++ docker push 10.2.0.20:5000/httpd_app2
+Using default tag: latest
+The push refers to repository [10.2.0.20:5000/httpd_app2]
+2be41263fa40: Preparing
+2b46ea7c8fd5: Preparing
+2e544c2daebf: Preparing
+1230e1d05e98: Preparing
+174f56854903: Preparing
+2e544c2daebf: Layer already exists
+2be41263fa40: Layer already exists
+1230e1d05e98: Layer already exists
+174f56854903: Layer already exists
+2b46ea7c8fd5: Layer already exists
+latest: digest: sha256:db636d40948e03a30ed119249c897c784a5ded9434ea60ce49f2350d7e1e7a7a size: 1363
++ docker push 10.2.0.20:5000/nginx
+Using default tag: latest
+The push refers to repository [10.2.0.20:5000/nginx]
+d280dd23d96e: Preparing
+484cd46309eb: Preparing
+174f56854903: Preparing
+484cd46309eb: Layer already exists
+174f56854903: Layer already exists
+d280dd23d96e: Layer already exists
+latest: digest: sha256:f7ed1230ab3c137e4fc1f0a38fb66892eb6ae611b16257083449cb6cad00048b size: 949
+Инициирую новую сборку [8mha:////4A2L6k/hnrnPvny6/Pn12g8zi0cHfDDdLUhlBRer/ikkAAAApx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyhEgY5/az8JP2U/OTs1CJVI4Ok0sycFCCdWFAAJA31ARey5APTAAAA[0mdocker build app 1
+Инициирую новую сборку [8mha:////4DuTUJBOvLQ1sN2a98LlSyZl0Xc/0EXI3uTSGkdLtJXfAAAApx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyhEgY5/az8JP2U/OTs1CJVI4Ok0sycFCCdWFAAJI30AdThySjTAAAA[0mdocker build app 2
+Инициирую новую сборку [8mha:////4Gc2HnMTjsZZaj39lBeB1mcTP0ReaGStsEXjjMgxy6N2AAAApx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyhEgYZ/az8JP2U/OTs1CJVI4Ok0sycFCCdl56ZV6EPAKxiw27RAAAA[0mdocker build nginx
+Finished: SUCCESS

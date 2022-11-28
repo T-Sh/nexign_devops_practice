@@ -1,0 +1,44 @@
+- hosts: apache 
+  tasks:
+    - name: Install httpd
+      yum: pkg=httpd state=present
+
+    - name: Create dir
+      file:
+        path: /var/www/internal.com/html/
+        state: directory
+
+    - name: Configure index
+      template:
+        src=index.html
+        dest=/var/www/html/index.html
+
+    - name: Configure httpd
+      copy:
+        src: httpd/conf/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+
+    - name: Configure firewall
+      firewalld:
+        port: "{{ item }}"
+        permanent: yes
+        state: enabled
+      loop:
+        - 80/tcp
+        - 9090/tcp
+
+    - name: Reload firewall
+      systemd:
+        name: firewalld
+        state: reloaded 
+
+    - name: Start httpd
+      service:
+        name=httpd
+        state=restarted    
+
+    - name: Enable httpd
+      systemd:
+        name: httpd.service
+        enabled: true
+        masked: no  

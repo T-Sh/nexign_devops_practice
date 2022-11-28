@@ -1,0 +1,60 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty plugin="gitlab-plugin@1.5.36">
+      <gitLabConnection>gitlab_conn</gitLabConnection>
+      <jobCredentialId></jobCredentialId>
+      <useAlternativeCredential>false</useAlternativeCredential>
+    </com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <jenkins.triggers.ReverseBuildTrigger>
+      <spec></spec>
+      <upstreamProjects>docker build images, </upstreamProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </jenkins.triggers.ReverseBuildTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>ssh root@10.2.0.10 &apos;yum install -y yum-utils&apos;
+ssh root@10.2.0.10 &apos;yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo&apos;
+ssh root@10.2.0.10 &apos;yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin&apos;</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>ssh root@10.2.0.10 &quot;rm -rf /etc/docker/daemon.json&quot;
+ssh root@10.2.0.10 &quot;rm -rf /etc/default/docker || true&quot;
+ssh root@10.2.0.10 &quot;mkdir -p /etc/docker/&quot;
+
+ssh root@10.2.0.10 &quot;echo &apos;{\&quot;insecure-registries\&quot;: [\&quot;10.2.0.20:5000\&quot;]}&apos; &gt; /etc/docker/daemon.json&quot;
+ssh root@10.2.0.10 &quot;echo &apos;DOCKER_OPTS=\&quot;--insecure-registry 10.2.0.20:5000\&quot;&apos; &gt; /etc/default/docker&quot;
+
+ssh root@10.2.0.10 &apos;systemctl start docker.service&apos;
+ssh root@10.2.0.10 &apos;systemctl stop docker.service&apos;
+ssh root@10.2.0.10 &apos;systemctl start docker.service&apos;</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>ssh root@10.2.0.10 &apos;docker pull 10.2.0.20:5000/nginx&apos;
+ssh root@10.2.0.10 docker rm -f nginx_local || true
+ssh root@10.2.0.10 &apos;docker run -d --name nginx_local -p 8082:8080 10.2.0.20:5000/nginx&apos;</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

@@ -1,0 +1,46 @@
+Started by upstream project "[8mha:////4IhqmNEucWxdZiKpNSHSB/s8QwYSZDHWajgy57yU307WAAAAqB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzhEgZZ/az8JP2U/OTs1CJVI4Ok0sycFCCdmZuYnlqsDwBWtvuH0gAAAA==[0mdocker build images" build number [8mha:////4MRFQxq25W5NDDaH2wK2KC0RUa+KP5LS9LH1KSBOayAiAAAAqB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBjn9rPwk/ZT85OzUIlUjg6TSzJwUIJ2Zm5ieWqxvBADGM8Dn0wAAAA==[0m2
+originally caused by:
+ Started by user [8mha:////4EQUw6wqUert2HzZ3FfvW0uGdo65uYxQxHo/zq0HfjLiAAAAlB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyOEgZu/dLi1CIwYQgAoFvN1cAAAAA=[0muser 1 1
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/docker build nginx
+[docker build nginx] $ /bin/sh -xe /tmp/jenkins10062963287281599772.sh
++ ssh root@10.2.0.10 'yum install -y yum-utils'
+Последняя проверка окончания срока действия метаданных: 0:01:53 назад, Пн 28 ноя 2022 00:09:39.
+Пакет yum-utils-4.3.0-1.el9.noarch уже установлен.
+Зависимости разрешены.
+Отсутствуют действия для выполнения.
+Выполнено!
++ ssh root@10.2.0.10 'yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo'
+Добавление репозитория из: https://download.docker.com/linux/centos/docker-ce.repo
++ ssh root@10.2.0.10 'yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin'
+Docker CE Stable - x86_64                        16 kB/s | 3.5 kB     00:00    
+Пакет docker-ce-3:20.10.21-3.el9.x86_64 уже установлен.
+Пакет docker-ce-cli-1:20.10.21-3.el9.x86_64 уже установлен.
+Пакет containerd.io-1.6.10-3.1.el9.x86_64 уже установлен.
+Пакет docker-compose-plugin-2.12.2-3.el9.x86_64 уже установлен.
+Зависимости разрешены.
+Отсутствуют действия для выполнения.
+Выполнено!
+[docker build nginx] $ /bin/sh -xe /tmp/jenkins18105356626558949540.sh
++ ssh root@10.2.0.10 'rm -rf /etc/docker/daemon.json'
++ ssh root@10.2.0.10 'rm -rf /etc/default/docker || true'
++ ssh root@10.2.0.10 'mkdir -p /etc/docker/'
++ ssh root@10.2.0.10 'echo '\''{"insecure-registries": ["10.2.0.20:5000"]}'\'' > /etc/docker/daemon.json'
++ ssh root@10.2.0.10 'echo '\''DOCKER_OPTS="--insecure-registry 10.2.0.20:5000"'\'' > /etc/default/docker'
++ ssh root@10.2.0.10 'systemctl start docker.service'
++ ssh root@10.2.0.10 'systemctl stop docker.service'
+Warning: Stopping docker.service, but it can still be activated by:
+  docker.socket
++ ssh root@10.2.0.10 'systemctl start docker.service'
+[docker build nginx] $ /bin/sh -xe /tmp/jenkins5647174117397456885.sh
++ ssh root@10.2.0.10 'docker pull 10.2.0.20:5000/nginx'
+Using default tag: latest
+latest: Pulling from nginx
+Digest: sha256:f7ed1230ab3c137e4fc1f0a38fb66892eb6ae611b16257083449cb6cad00048b
+Status: Image is up to date for 10.2.0.20:5000/nginx:latest
+10.2.0.20:5000/nginx:latest
++ ssh root@10.2.0.10 docker rm -f nginx_local
+nginx_local
++ ssh root@10.2.0.10 'docker run -d --name nginx_local -p 8082:8080 10.2.0.20:5000/nginx'
+205a4e461ce0245143850532c66d0bb9300126d00202a2164100a9c52730089d
+Finished: SUCCESS
