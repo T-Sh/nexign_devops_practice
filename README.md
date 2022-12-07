@@ -11,7 +11,7 @@ Directory jobs contains Jenkins jobs for automatic deploy.
 
 Both builds start automatically by Gitlab push.
 
-Builds can be deploy don't conflict and can be deployed in the same time.
+Builds don't conflict and can be deployed at the same time.
 
 In the end nginx from ansible is available at port '8080', nginx from docker is available at port '8082'.
 
